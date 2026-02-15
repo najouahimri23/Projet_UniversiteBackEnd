@@ -1,6 +1,7 @@
 ﻿using UniversiteDomain.DataAdapters.DataAdaptersFactory;
 using UniversiteDomain.Entities;
-using UniversiteDomain.Exceptions.EtudiantExceptions;
+using UniversiteDomaine.Entities;
+using UniversiteDomaine.Exceptions.EtudiantExceptions;
 using UniversiteDomaine.Exceptions.NoteExceptions;
 using UniversiteDomaine.Exceptions.UeExceptions;
 
@@ -14,7 +15,7 @@ public class AddNoteUseCase(IRepositoryFactory repositoryFactory)
         return await repositoryFactory.NoteRepository().AddNoteAsync(idEtudiant, idUe, valeur);
     }
 
-    // 🆕 Surcharge pour plus de flexibilité (optionnel mais recommandé)
+    //  Surcharge pour plus de flexibilité (optionnel mais recommandé)
     public async Task<Note> ExecuteAsync(Etudiant etudiant, Ue ue, float valeur)
     {
         ArgumentNullException.ThrowIfNull(etudiant);
@@ -62,8 +63,14 @@ public class AddNoteUseCase(IRepositoryFactory repositoryFactory)
 
         //  Vérifier qu'il n'a pas déjà une note dans cette UE
         var noteExistante = await noteRepo.FindByConditionAsync(n =>
-            n.IdEtudiant == idEtudiant && n.IdUe == idUe);
+            n.EtudiantId == idEtudiant && n.UeId == idUe);
         if (noteExistante is { Count: > 0 })
             throw new DuplicateNoteException($"L'étudiant {idEtudiant} a déjà une note dans l'UE {idUe}");
+    }
+    // AJOUT DE LA MÉTHODE IsAuthorized
+    public bool IsAuthorized(string role)
+    {
+        // Seuls Responsable et Scolarité peuvent ajouter des notes
+        return role.Equals(Roles.Responsable) || role.Equals(Roles.Scolarite);
     }
 }

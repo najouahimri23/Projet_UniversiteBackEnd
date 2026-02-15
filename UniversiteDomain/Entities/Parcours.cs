@@ -1,4 +1,6 @@
-﻿namespace UniversiteDomain.Entities;
+﻿using UniversiteDomain.Entities;
+
+namespace UniversiteDomaine.Entities;
 
 public class Parcours
 {

@@ -1,4 +1,6 @@
-﻿namespace UniversiteDomain.Entities;
+﻿using UniversiteDomaine.Entities;
+
+namespace UniversiteDomain.Entities;
 
 public class Ue
 {

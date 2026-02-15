@@ -1,11 +1,10 @@
-﻿
-
-using UniversiteDomain.DataAdapters.DataAdaptersFactory;
+﻿using UniversiteDomain.DataAdapters.DataAdaptersFactory;
 using UniversiteDomain.Entities;
-using UniversiteDomain.Exceptions.ParcoursExceptions;
+using UniversiteDomaine.Entities;
+using UniversiteDomaine.Exceptions.ParcoursExceptions;
 using UniversiteDomaine.Exceptions.UeExceptions;
 
-namespace UniversiteDomain.UseCases.ParcoursUseCases.UeDansParcours;
+namespace UniversiteDomaine.UseCases.ParcoursUseCases.UeDansParcours;
 
 public class AddUeDansParcoursUseCase(IRepositoryFactory repositoryFactory)
 {
@@ -67,5 +66,11 @@ public class AddUeDansParcoursUseCase(IRepositoryFactory repositoryFactory)
             var trouve=inscrites.FindAll(e=>e.Id.Equals(idUe));
             if (trouve is {Count: > 0 }) throw new DuplicateUeDansParcoursException(idUe+" est déjà présente dans le parcours : "+idParcours);   
         }
+    }
+    // AJOUT DE LA MÉTHODE IsAuthorized
+    public bool IsAuthorized(string role)
+    {
+        // Seuls Responsable et Scolarité peuvent ajouter des notes
+        return role.Equals(Roles.Responsable) || role.Equals(Roles.Scolarite);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using UniversiteDomain.Entities;
+using UniversiteDomaine.Entities;
+
 namespace UniversiteDomain.DataAdapters;
 
 public interface INoteRepository : IRepository<Note>
@@ -7,4 +9,9 @@ public interface INoteRepository : IRepository<Note>
     
     // Méthode pour récupérer la note d'un étudiant dans une UE
     Task<Note?> GetNoteAsync(long idEtudiant, long idUe);
+    
+    // NOUVELLES MÉTHODES pour l'import CSV
+    Task<List<Note>> GetNotesByUeIdAsync(long ueId);
+    Task UpdateNoteAsync(Note note);
+    Task CreateNoteAsync(Note note);
 }

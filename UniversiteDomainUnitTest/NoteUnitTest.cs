@@ -3,6 +3,7 @@ using Moq;
 using UniversiteDomain.DataAdapters;
 using UniversiteDomain.DataAdapters.DataAdaptersFactory;
 using UniversiteDomain.Entities;
+using UniversiteDomaine.Entities;
 using UniversiteDomaine.UseCases.NoteUseCases;
 
 namespace UniversiteDomainUnitTests;
@@ -42,8 +43,8 @@ public class NoteUnitTest
 
         var noteFinale = new Note
         {
-            IdEtudiant = idEtudiant,
-            IdUe = idUe,
+            EtudiantId = idEtudiant,
+            UeId = idUe,
             Valeur = valeurNote
         };
 
@@ -84,8 +85,8 @@ public class NoteUnitTest
 
         // 🔹 Vérifications
         Assert.That(result, Is.Not.Null);
-        Assert.That(result.IdEtudiant, Is.EqualTo(idEtudiant));
-        Assert.That(result.IdUe, Is.EqualTo(idUe));
+        Assert.That(result.EtudiantId, Is.EqualTo(idEtudiant));
+        Assert.That(result.UeId, Is.EqualTo(idUe));
         Assert.That(result.Valeur, Is.EqualTo(valeurNote));
 
     }

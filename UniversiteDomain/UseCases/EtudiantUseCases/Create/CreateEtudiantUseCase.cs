@@ -1,9 +1,10 @@
 ﻿using UniversiteDomain.DataAdapters;
 using UniversiteDomain.Entities;
-using UniversiteDomain.Exceptions.EtudiantExceptions;
 using UniversiteDomain.Util;
+using UniversiteDomaine.Entities;
+using UniversiteDomaine.Exceptions.EtudiantExceptions;
 
-namespace UniversiteDomain.UseCases.EtudiantUseCases.Create;
+namespace UniversiteDomaine.UseCases.EtudiantUseCases.Create;
 
 public class CreateEtudiantUseCase(IEtudiantRepository etudiantRepository)
 
@@ -42,5 +43,11 @@ public class CreateEtudiantUseCase(IEtudiantRepository etudiantRepository)
         if (existe is {Count:>0}) throw new DuplicateEmailException(etudiant.Email +" est déjà affecté à un étudiant");
         // Le métier définit que les nom doite contenir plus de 3 lettres
         if (etudiant.Nom.Length < 3) throw new InvalidNomEtudiantException(etudiant.Nom +" incorrect - Le nom d'un étudiant doit contenir plus de 3 caractères");
+    }
+    // AJOUT DE LA MÉTHODE IsAuthorized
+    public bool IsAuthorized(string role)
+    {
+        // Seuls Responsable et Scolarité peuvent créer des étudiants
+        return role.Equals(Roles.Responsable) || role.Equals(Roles.Scolarite);
     }
 }

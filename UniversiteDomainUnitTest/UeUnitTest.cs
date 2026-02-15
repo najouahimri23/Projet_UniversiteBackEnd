@@ -2,10 +2,10 @@
 using Moq;
 using UniversiteDomain.DataAdapters;
 using UniversiteDomain.Entities;
-using UniversiteDomain.UseCases.UeUseCases.Create;
 using UniversiteDomaine.Exceptions.UeExceptions;
+using UniversiteDomaine.UseCases.UeUseCases.Create;
 
-namespace UniversiteDomainUnitTests;
+namespace UniversiteDomainUnitTest;
 
 public class UeUnitTest
 {

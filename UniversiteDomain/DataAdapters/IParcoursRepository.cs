@@ -1,4 +1,5 @@
 ﻿using UniversiteDomain.Entities;
+using UniversiteDomaine.Entities;
 
 namespace UniversiteDomain.DataAdapters;
 
@@ -12,4 +13,5 @@ public interface IParcoursRepository : IRepository<Parcours>
     // ➕ nouvelles méthodes pour les UEs
     Task<Parcours> AddUeAsync(long idParcours, long idUe);
     Task<Parcours> AddUeAsync(long idParcours, long[] idUes);
+    Task<List<Parcours>> GetAllWithUesAsync();
 }

@@ -1,9 +1,10 @@
 ﻿using UniversiteDomain.DataAdapters;
 using UniversiteDomain.DataAdapters.DataAdaptersFactory;
 using UniversiteDomain.Entities;
-using UniversiteDomain.Exceptions.ParcoursExceptions;
+using UniversiteDomaine.Entities;
+using UniversiteDomaine.Exceptions.ParcoursExceptions;
 
-namespace UniversiteDomain.UseCases.ParcoursUseCases.Create;
+namespace UniversiteDomaine.UseCases.ParcoursUseCases.Create;
 
 public class CreateParcoursUseCase
 {
@@ -47,5 +48,11 @@ public class CreateParcoursUseCase
 
         if (parcours.AnneeFormation < 1 || parcours.AnneeFormation > 5)
             throw new InvalidAnneeFormationException("Année de formation " + parcours.AnneeFormation + " incorrecte - doit être comprise entre 1 et 5");
+    }
+    // AJOUT DE LA MÉTHODE IsAuthorized
+    public bool IsAuthorized(string role)
+    {
+        // Seuls Responsable et Scolarité peuvent ajouter des notes
+        return role.Equals(Roles.Responsable) || role.Equals(Roles.Scolarite);
     }
 }

@@ -1,18 +1,15 @@
-﻿using System.Linq.Expressions;
-using UniversiteDomain.Entities;
+﻿using UniversiteDomain.Entities;
+using UniversiteDomaine.Entities;
 
 namespace UniversiteDomain.DataAdapters;
 
 public interface IEtudiantRepository : IRepository<Etudiant>
 {
-    Task<Etudiant> CreateAsync(Etudiant entity);
-    Task UpdateAsync(Etudiant entity);
-    Task DeleteAsync(long id);
-    Task DeleteAsync(Etudiant entity);
-    Task<Etudiant?> FindAsync(long id);
-    Task<Etudiant?> FindAsync(params object[] keyValues);
-    Task<List<Etudiant>> FindByConditionAsync(Expression<Func<Etudiant, bool>> condition);
-    Task<List<Etudiant>> FindAllAsync();
-    Task SaveChangesAsync();
+    Task AffecterParcoursAsync(long idEtudiant, long idParcours);
+    Task AffecterParcoursAsync(Etudiant etudiant, Parcours parcours);
+    Task<Etudiant?> FindEtudiantCompletAsync(long idEtudiant);
     
+    // NOUVELLES MÉTHODES pour l'import CSV
+    Task<bool> ExistsByNumEtudAsync(string numEtud);
+    Task<Etudiant?> FindByNumEtudAsync(string numEtud);
 }

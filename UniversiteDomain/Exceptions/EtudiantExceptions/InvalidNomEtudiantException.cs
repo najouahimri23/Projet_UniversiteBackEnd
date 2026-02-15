@@ -1,4 +1,4 @@
-﻿namespace UniversiteDomain.Exceptions.EtudiantExceptions;
+﻿namespace UniversiteDomaine.Exceptions.EtudiantExceptions;
 
 [Serializable]
 public class InvalidNomEtudiantException : Exception

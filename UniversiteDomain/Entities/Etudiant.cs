@@ -1,4 +1,4 @@
-﻿namespace UniversiteDomain.Entities;
+﻿namespace UniversiteDomaine.Entities;
 
 public class Etudiant
 {
@@ -11,7 +11,7 @@ public class Etudiant
     // ManyToOne : l'étudiant est inscrit dans un parcours
     public Parcours? ParcoursSuivi { get; set; } = null;
     
-    public List<Note>? ObtientsNotes { get; set; } = new();
+    public List<Note>? NotesObtenues { get; set; } = new();
 
 
 

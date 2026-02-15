@@ -2,7 +2,7 @@
 using UniversiteDomain.Entities;
 using UniversiteDomaine.Exceptions.UeExceptions;
 
-namespace UniversiteDomain.UseCases.UeUseCases.Create;
+namespace UniversiteDomaine.UseCases.UeUseCases.Create;
 
 public class CreateUeUseCase(IUeRepository ueRepository)
 {
